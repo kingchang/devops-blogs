@@ -1,7 +1,7 @@
 ---
 title: "Linux 使用 parted 製作硬碟分割"
 date: 2019-06-27T08:11:08+08:00
-draft: true
+#draft: true
 ---
 
 因 AWS EC2 在虛擬主機的硬體提供支援中有分 EBS 跟 instance store，使用 instance store 會比較便宜，缺點就是每次shutdown 後，存放在instance store 的資料會被清空，故每次重新啟動後都需要實作硬碟分割，相關的方式如下
@@ -12,13 +12,11 @@ draft: true
 
 2. 編輯 /etc/fstab
 
-   ```linux
-      vim /etc/fstab
-   ```
-    
+```bash
+    vim /etc/fstab
+```
 ![fstab content](/fstab_sample.png)
-     
-    
+
 3. 使用 parted 切 swap 跟 data 的分割區
 
 ```bash
@@ -65,17 +63,14 @@ Disk Flags:
 Number  Start   End     Size    File system     Name     Flags
  1      1000MB  30.0GB  29.0GB  linux-swap(v1)  primary
  2      30.0GB  200GB   170GB   xfs             primary
-
-(parted) exit
  
 (parted) quit
 Information: You may need to update /etc/fstab.
-
 ```
 
 4. 使用 lvm 建立相關的記錄
-    
-```linux
+
+```bash
    mkswap /dev/nvme0n1p1
    swapon -a /dev/nvme0n1p1
    vim /etc/fstab
@@ -99,6 +94,4 @@ LABEL=cloudimg-rootfs	/	 ext4	defaults,discard	0 0
 #cdf3fcb0-11d9-42c1-b588-73a4ee2258f0
 /dev/nvme0n1p1 none swap defaults,discard 0 0
 UUID=a26ea291-0f31-4756-8ca3-f783438c2ef1 /opt xfs defaults,nofail 0 2
-
-
 ```
