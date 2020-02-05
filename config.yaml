@@ -12,6 +12,8 @@ pygmentsStyle: pygments
 
 taxonomies:
   tag: tags
+  series: series
+  category: categories
 
 permalinks:
   post: /:filename/
@@ -24,22 +26,22 @@ menu:
     pre: home
     url: /
     weight: 1
-  - name: Life & Learn
+  - name: Blog
     pre: edit
-    url: /posts/learn/
-    weight: 2
-  - name: Development
-    pre: edit
-    url: /posts/develop/
-    weight: 2
-  - name: Operator
-    pre: edit
-    url: /posts/operator/
-    weight: 2
-  - name: Memo
-    pre: edit
-    url: /posts/memo/
-    weight: 2
+    url: /posts/
+  #   weight: 2
+  # - name: Development
+  #   pre: edit
+  #   url: /posts/develop/
+  #   weight: 2
+  # - name: Operator
+  #   pre: edit
+  #   url: /posts/operator/
+  #   weight: 2
+  # - name: Memo
+  #   pre: edit
+  #   url: /posts/memo/
+  #   weight: 2
   - name: Tags
     pre: tag
     url: /tags/
